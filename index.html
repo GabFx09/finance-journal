@@ -24,19 +24,21 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 #app{display:flex;flex-direction:column;height:100vh}
 
 /* TOPBAR */
-#tb{background:linear-gradient(90deg,#0b1018 0%,#0e1623 50%,#0b1018 100%);border-bottom:1px solid rgba(0,200,150,.15);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:relative}
-#tb::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,200,150,.4),transparent)}
-.logo{display:flex;align-items:center;gap:12px}
-.logo-mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#00c896,#00a37a);display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 16px rgba(0,200,150,.3);flex-shrink:0}
-.logo-title{font-family:var(--serif);font-size:16px;color:var(--txt);letter-spacing:.01em}
+#tb{background:linear-gradient(135deg,#060c16 0%,#0d1a2b 40%,#071020 70%,#060c16 100%);border-bottom:1px solid rgba(0,200,150,.12);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:relative;gap:12px}
+#tb::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,200,150,.5),rgba(78,143,255,.2),rgba(0,200,150,.5),transparent)}
+.logo{display:flex;align-items:center;gap:12px;min-width:0;flex:1}
+.logo-mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#00c896 0%,#00a37a 60%,#007a5c 100%);display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 20px rgba(0,200,150,.35),inset 0 1px 0 rgba(255,255,255,.15);flex-shrink:0}
+.logo-text{min-width:0}
+.logo-title{font-family:var(--serif);font-size:16px;color:var(--txt);letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .logo-sub{font-size:10px;color:var(--sub);letter-spacing:.08em;text-transform:uppercase;margin-top:1px}
-.tb-right{display:flex;gap:10px;align-items:center}
-#tb-nw{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--grn)}
-#tb-nw-lbl{font-size:10px;color:var(--sub);text-align:right}
+.tb-right{display:flex;gap:10px;align-items:center;flex-shrink:0}
+#tb-nw-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0}
+#tb-nw{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--grn);text-shadow:0 0 16px rgba(0,200,150,.4)}
+#tb-nw-lbl{font-size:9px;color:var(--sub);text-align:right;letter-spacing:.08em;text-transform:uppercase}
 
 /* SYNC BAR */
-#sb{background:#080e16;border-bottom:1px solid var(--bdr);padding:5px 20px;display:flex;align-items:center;justify-content:space-between;font-size:11px;flex-shrink:0}
-.sbl{display:flex;align-items:center;gap:8px}
+#sb{background:#060c16;border-bottom:1px solid var(--bdr);padding:4px 16px;display:flex;align-items:center;justify-content:space-between;font-size:11px;flex-shrink:0;flex-wrap:wrap;gap:4px}
+.sbl{display:flex;align-items:center;gap:8px;min-width:0}
 #sdot{width:7px;height:7px;border-radius:50%;background:var(--mut);flex-shrink:0;transition:.3s}
 .sdot-ok{background:var(--grn)!important;box-shadow:0 0 8px var(--grn)}
 .sdot-busy{background:var(--gold)!important;animation:pulse 1s infinite}
@@ -46,9 +48,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 /* NAV */
 #nav{background:var(--surf);border-bottom:1px solid var(--bdr);display:flex;overflow-x:auto;scrollbar-width:none;padding:0 8px;flex-shrink:0}
 #nav::-webkit-scrollbar{display:none}
-.nb{padding:11px 15px;font-size:11px;font-weight:500;color:var(--sub);border:none;background:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .18s;letter-spacing:.02em}
-.nb.on{color:var(--grn);border-bottom-color:var(--grn);background:rgba(0,200,150,.04)}
-.nb:hover:not(.on){color:var(--txt)}
+.nb{padding:11px 16px;font-size:11px;font-weight:500;color:var(--sub);border:none;background:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s;letter-spacing:.02em}
+.nb.on{color:var(--grn);border-bottom-color:var(--grn);background:rgba(0,200,150,.07);text-shadow:0 0 20px rgba(0,200,150,.5)}
+.nb:hover:not(.on){color:var(--txt);background:rgba(255,255,255,.02)}
 
 /* MAIN */
 #main{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--bdr) transparent}
@@ -71,18 +73,20 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .g5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
-.card{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:18px;margin-bottom:16px;position:relative;overflow:hidden}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent)}
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:18px;margin-bottom:16px;position:relative;overflow:hidden;transition:border-color .25s,box-shadow .25s}
+.card:hover{border-color:rgba(0,200,150,.15);box-shadow:0 4px 24px rgba(0,0,0,.25)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,200,150,.12),rgba(255,255,255,.04),rgba(0,200,150,.12),transparent)}
 .ct{font-size:9px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.14em;margin-bottom:14px}
 .fb{display:flex;justify-content:space-between;align-items:center}
 
 /* METRIC CARDS */
-.met{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:16px;position:relative;overflow:hidden}
-.met::after{content:'';position:absolute;top:0;right:0;width:80px;height:80px;border-radius:50%;opacity:.05;transform:translate(20px,-20px)}
-.met.grn::after{background:var(--grn)}
-.met.red::after{background:var(--red)}
-.met.gold::after{background:var(--gold)}
-.met.blue::after{background:var(--blue)}
+.met{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:16px;position:relative;overflow:hidden;transition:transform .18s,border-color .2s,box-shadow .2s}
+.met:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.3)}
+.met::after{content:'';position:absolute;top:0;right:0;width:90px;height:90px;border-radius:50%;opacity:.06;transform:translate(25px,-25px)}
+.met.grn{border-left:2px solid var(--grn)}.met.grn::after{background:var(--grn)}.met.grn:hover{border-color:rgba(0,200,150,.3);border-left-color:var(--grn)}
+.met.red{border-left:2px solid var(--red)}.met.red::after{background:var(--red)}.met.red:hover{border-color:rgba(255,71,87,.3);border-left-color:var(--red)}
+.met.gold{border-left:2px solid var(--gold)}.met.gold::after{background:var(--gold)}.met.gold:hover{border-color:rgba(245,166,35,.3);border-left-color:var(--gold)}
+.met.blue{border-left:2px solid var(--blue)}.met.blue::after{background:var(--blue)}.met.blue:hover{border-color:rgba(78,143,255,.3);border-left-color:var(--blue)}
 .ml{font-size:10px;color:var(--sub);margin-bottom:5px;font-weight:500;letter-spacing:.04em}
 .mv{font-size:22px;font-weight:700;font-family:var(--mono);color:var(--txt)}
 .mv.grn{color:var(--grn)}.mv.red{color:var(--red)}.mv.gold{color:var(--gold)}.mv.blue{color:var(--blue)}.mv.nt{color:var(--sub)}
@@ -169,7 +173,64 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 /* SCORE BADGE */
 .score-badge{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;font-family:var(--mono)}
 
-@media(max-width:640px){.g4,.g5{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr}.g2{grid-template-columns:1fr}.tab{padding:12px}.fr3,.fr4{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){
+  .g4,.g5{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:1fr 1fr}
+  .g2{grid-template-columns:1fr}
+  .tab{padding:10px}
+  .fr3,.fr4{grid-template-columns:1fr 1fr}
+
+  /* TOPBAR compact */
+  #tb{padding:8px 12px;gap:8px}
+  .logo-mark{width:32px;height:32px;font-size:15px}
+  .logo-title{font-size:13px}
+  .logo-sub{display:none}
+  #tb-date{display:none}
+  #tb-nw{font-size:13px}
+  #tb-nw-lbl{font-size:8px}
+
+  /* SYNC BAR compact */
+  #sb{padding:3px 10px;font-size:10px}
+  #stxt{max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  /* NAV → 4×2 grid, semua tab langsung terlihat */
+  #nav{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    overflow:visible;
+    padding:5px 6px;
+    gap:3px;
+    border-bottom:1px solid var(--bdr)
+  }
+  #nav::-webkit-scrollbar{display:none}
+  .nb{
+    padding:7px 4px;
+    font-size:9.5px;
+    text-align:center;
+    white-space:normal;
+    border-bottom:none;
+    border-radius:8px;
+    border:1px solid transparent;
+    line-height:1.3;
+    letter-spacing:0
+  }
+  .nb.on{
+    background:rgba(0,200,150,.12);
+    border-color:rgba(0,200,150,.28);
+    color:var(--grn);
+    text-shadow:0 0 12px rgba(0,200,150,.4)
+  }
+  .nb:hover:not(.on){background:rgba(255,255,255,.03);border-color:var(--bdr)}
+
+  /* Cards mobile */
+  .card{padding:14px;border-radius:12px}
+  .met{padding:13px}
+  .mv{font-size:18px}
+
+  /* Chart height */
+  .chart-wrap{height:160px}
+  .chart-wrap.tall{height:200px}
+}
 </style>
 </head>
 <body>
@@ -222,14 +283,14 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
   <div id="tb">
     <div class="logo">
       <div class="logo-mark">💼</div>
-      <div>
+      <div class="logo-text">
         <div class="logo-title">FinanceJournal Pro</div>
         <div class="logo-sub">Laporan Keuangan Pribadi</div>
       </div>
     </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px">
-      <div id="tb-nw-lbl" style="font-size:9px;color:var(--sub);text-transform:uppercase;letter-spacing:.1em">Kekayaan Bersih</div>
-      <div id="tb-nw" style="font-family:var(--mono);font-size:16px;font-weight:700;color:var(--grn)">Rp 0</div>
+    <div id="tb-nw-wrap">
+      <div id="tb-nw-lbl">Kekayaan Bersih</div>
+      <div id="tb-nw">Rp 0</div>
     </div>
     <div class="tb-right">
       <div id="tb-date" style="font-size:11px;color:var(--sub);text-align:right"></div>
